@@ -31,7 +31,9 @@ sequenceDiagram
         History->>History: append [WorkflowTaskStarted]
         History-->>-Matcher: 
         Matcher-->>-Frontend: WorkflowTask
-        Frontend-->>-Worker: 
+        Frontend->>+History: GetWorkflowExecutionHistory
+        History-->>-Frontend: 
+        Frontend-->>-Worker: WorkflowTask
         Worker->>Worker: handle WorkflowExecutionStarted
         Note right of Worker: ???
         Worker->>Worker: add workflow execution to cache
@@ -63,7 +65,7 @@ sequenceDiagram
         History->>History: append [ActivityTaskStarted]
         History-->>-Matcher: 
         Matcher-->>-Frontend: ActivityTask
-        Frontend-->>-Worker: 
+        Frontend-->>-Worker: ActivityTask
         Worker->>Worker: execute Activity function
         Worker->>+Frontend: RespondActivityTaskCompleted
         Frontend->>+History: RespondActivityTaskCompleted
@@ -85,7 +87,9 @@ sequenceDiagram
         History->>History: append [WorkflowTaskStarted]
         History-->>-Matcher: 
         Matcher-->>-Frontend: WorkflowTask
-        Frontend-->>-Worker: 
+        Frontend->>+History: GetWorkflowExecutionHistory
+        History-->>-Frontend: 
+        Frontend-->>-Worker: WorkflowTask
         Worker->>Worker: handle WorkflowTaskCompleted
         Note right of Worker: execute Workflow transition [STARTED -> COMPLETED]
         Worker->>Worker: handle ActivityTaskScheduled
@@ -122,7 +126,7 @@ sequenceDiagram
         History->>History: append [ActivityTaskStarted]
         History-->>-Matcher: 
         Matcher-->>-Frontend: ActivityTask
-        Frontend-->>-Worker: 
+        Frontend-->>-Worker: ActivityTask
         Worker->>Worker: execute Activity function
         Worker->>+Frontend: RespondActivityTaskCompleted
         Frontend->>+History: RespondActivityTaskCompleted
@@ -144,7 +148,9 @@ sequenceDiagram
         History->>History: append [WorkflowTaskStarted]
         History-->>-Matcher: 
         Matcher-->>-Frontend: WorkflowTask
-        Frontend-->>-Worker: 
+        Frontend->>+History: GetWorkflowExecutionHistory
+        History-->>-Frontend: 
+        Frontend-->>-Worker: WorkflowTask
         Worker->>Worker: handle WorkflowTaskCompleted
         Note right of Worker: execute Workflow transition [STARTED -> COMPLETED]
         Worker->>Worker: handle ActivityTaskScheduled
@@ -176,6 +182,7 @@ sequenceDiagram
 - [AddWorkflowTask](AddWorkflowTask.md)
 - [PollWorkflowTaskQueue](PollWorkflowTaskQueue.md)
 - [RecordWorkflowTaskStarted](RecordWorkflowTaskStarted.md)
+- [GetWorkflowExecutionHistory](https://github.com/temporalio/temporal/blob/main/service/frontend/workflow_handler.go#L720)
 - [RespondWorkflowTaskCompleted](RespondWorkflowTaskCompleted.md)
 - [AddActivityTask](AddActivityTask.md)
 - [PollActivityTaskQueue](PollActivityTaskQueue.md)
