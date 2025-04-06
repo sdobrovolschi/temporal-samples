@@ -1,0 +1,6 @@
+embedded:
+  wiremock:
+    docker-image: wiremock/wiremock:3.12.1
+    files-to-include:
+    - classpath-resource: wiremock
+      container-path: /home/wiremock
