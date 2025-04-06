@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathTemplate": "/accounts/{accountId}/transactions",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "type": "DEPOSIT",
+          "amount": {
+            "value": 100,
+            "currency": "USD"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "fixedDelayMilliseconds": 500
+  }
+}

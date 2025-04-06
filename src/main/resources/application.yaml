@@ -1,0 +1,24 @@
+server:
+  port: 8090
+spring:
+  temporal:
+    connection:
+      target: localhost:7233
+    namespace: temporal-system
+    workers-auto-discovery:
+      packages:
+      - com.example
+    workflow-cache:
+      max-instances: 2
+      max-threads: 2
+      using-virtual-workflow-threads: true
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            read-timeout: 2000
+logging:
+  level:
+    io:
+      temporal: trace

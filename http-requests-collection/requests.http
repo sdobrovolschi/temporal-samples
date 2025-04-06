@@ -1,0 +1,12 @@
+### Initiate transfer
+POST localhost:8090/transfers
+Content-Type: application/json
+
+{
+  "fromAccountId": "1d554ea5-228d-4b91-a6c0-78a87939617a",
+  "toAccountId": "cad519ce-8ac1-45bc-a1c2-be9a70b5e0ee",
+  "amount": {
+    "value": 100,
+    "currency": "USD"
+  }
+}
