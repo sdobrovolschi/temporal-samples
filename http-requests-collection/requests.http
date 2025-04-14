@@ -10,3 +10,13 @@ Content-Type: application/json
     "currency": "USD"
   }
 }
+
+### Start subscription
+POST localhost:8090/subscriptions
+
+> {%
+    client.global.set("subscriptionId", response.body);
+%}
+
+### Cancel subscription
+DELETE localhost:8090/subscriptions/{{subscriptionId}}
